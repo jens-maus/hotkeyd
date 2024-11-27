@@ -28,7 +28,7 @@ char *default_device()
 	char *tret = NULL;
 
 	d = opendir("/dev/input/by-id");
-	while( (ent = readdir(d)) )
+	while( d != NULL && (ent = readdir(d)) )
 	{
 		if(is_keyboard(ent->d_name)) {
 			tret = (char*)malloc(sizeof(char) * (18+strlen(ent->d_name)));
@@ -49,7 +49,7 @@ char *default_device()
 	}
 
 	d = opendir("/dev/input/by-path");
-	while( (ent = readdir(d)) )
+	while( d != NULL && (ent = readdir(d)) )
 	{
 		if(is_keyboard(ent->d_name)) {
 			tret = (char*)malloc(sizeof(char) * (20+strlen(ent->d_name)));
